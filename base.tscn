@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://dikn7snu43chf"]
+
+[ext_resource type="Script" uid="uid://bnwh8l4wfp43n" path="res://scripts/player.gd" id="1_8kuj7"]
+[ext_resource type="PackedScene" uid="uid://bg53v1jjfr714" path="res://scenes/gun_base.tscn" id="2_ohhpf"]
+[ext_resource type="PackedScene" uid="uid://rxm2xai3no84" path="res://scenes/UI/UI.tscn" id="3_yagwu"]
+[ext_resource type="PackedScene" uid="uid://c04mj2er5xpbr" path="res://scenes/maps/testArea.tscn" id="4_rh0fg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3jj6l"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sec0p"]
+
+[node name="base" type="Node3D"]
+
+[node name="UI" parent="." instance=ExtResource("3_yagwu")]
+
+[node name="player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_8kuj7")
+
+[node name="hitbox" type="CollisionShape3D" parent="player"]
+shape = SubResource("CapsuleShape3D_3jj6l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="player"]
+visible = false
+mesh = SubResource("CapsuleMesh_sec0p")
+
+[node name="camera" type="Camera3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="hitscanRaycast" type="RayCast3D" parent="player/camera"]
+target_position = Vector3(0, 0, -100)
+collision_mask = 3
+
+[node name="lookDirectionHint" type="Node3D" parent="player/camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
+
+[node name="viewmodelBasePoint" type="Node3D" parent="player/camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, -0.9)
+
+[node name="viewmodelEditPoint" type="Node3D" parent="player/camera"]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 0.6, -0.0999999, -0.7)
+
+[node name="viewModel" type="Node3D" parent="player/camera"]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 0, -2.5, 0)
+
+[node name="projectileSpawnPoint" type="Node3D" parent="player/camera/viewModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)
+
+[node name="gun_base" parent="player/camera/viewModel" instance=ExtResource("2_ohhpf")]
+grip_length = 0.2
+slot_area_length = 0.7
+
+[node name="testArea" parent="." instance=ExtResource("4_rh0fg")]

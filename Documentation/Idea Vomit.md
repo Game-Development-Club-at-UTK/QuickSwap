@@ -1,0 +1,3 @@
+- When modding guns, the character holds the gun up and the UI to edit slots appears on the side of the gun, hologram-style
+- (maybe out of the scope of the club) many mods and projectiles will visibly modify the gun
+- Generally work with lower damage numbers for ease of mental math on the player's part. Maybe multiply the final damage calculation and enemy health by 10 just for the sake of big numbers?
