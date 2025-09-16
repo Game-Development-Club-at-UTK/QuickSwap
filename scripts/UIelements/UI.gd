@@ -35,6 +35,6 @@ func _slot_clicked(slot): #when clicking on a full slot, pick up or switch. on e
 			heldChip = slot.get_child(0)
 			print("picked up")
 
-func _process(delta): #update the position of the held chip every frame
+func _process(_delta): #update the position of the held chip every frame
 	if isChipHeld:
 		heldChip.global_position = get_viewport().get_mouse_position()
