@@ -1,7 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsor17jldlxvw"]
+[gd_scene load_steps=7 format=3 uid="uid://dsor17jldlxvw"]
 
 [ext_resource type="Script" uid="uid://b188mey8mrd64" path="res://scripts/Enemy/enemy.gd" id="1_dknon"]
+[ext_resource type="Script" uid="uid://c0pnmand7jy0o" path="res://scripts/Enemy/bahavior.gd" id="2_4ra3w"]
 [ext_resource type="Script" uid="uid://dublh7otg2axl" path="res://scripts/Enemy/follow_player.gd" id="3_5uy6h"]
+
+[sub_resource type="Resource" id="Resource_c4w8v"]
+script = ExtResource("3_5uy6h")
+speed = null
+metadata/_custom_type_script = "uid://dublh7otg2axl"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qgjij"]
 
@@ -9,7 +15,7 @@
 
 [node name="enamy" type="CharacterBody3D" groups=["enemy"]]
 script = ExtResource("1_dknon")
-behavior_scenes = Array[Script]([ExtResource("3_5uy6h")])
+behaviors = Array[ExtResource("2_4ra3w")]([SubResource("Resource_c4w8v")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_qgjij")
