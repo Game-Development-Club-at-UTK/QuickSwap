@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhpaeufje2ugr"
-path.s3tc="res://.godot/imported/gun_colors_1.png-085a0ddeb3c7ad7b5c2e99c64445df2e.s3tc.ctex"
+uid="uid://1uh2ur63y6pk"
+path.s3tc="res://.godot/imported/wall1.png-431824518772101116c944d8e2fc8309.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/gun_colors_1.png"
-dest_files=["res://.godot/imported/gun_colors_1.png-085a0ddeb3c7ad7b5c2e99c64445df2e.s3tc.ctex"]
+source_file="res://textures/wall1.png"
+dest_files=["res://.godot/imported/wall1.png-431824518772101116c944d8e2fc8309.s3tc.ctex"]
 
 [params]
 

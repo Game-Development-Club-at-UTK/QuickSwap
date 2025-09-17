@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bnwh8l4wfp43n" path="res://scripts/player.gd" id="1_8kuj7"]
 [ext_resource type="PackedScene" uid="uid://bg53v1jjfr714" path="res://scenes/gun_base.tscn" id="2_ohhpf"]
 [ext_resource type="PackedScene" uid="uid://rxm2xai3no84" path="res://scenes/UI/UI.tscn" id="3_yagwu"]
-[ext_resource type="PackedScene" uid="uid://c04mj2er5xpbr" path="res://scenes/maps/testArea.tscn" id="4_rh0fg"]
+[ext_resource type="PackedScene" uid="uid://bd2x2eyl63usk" path="res://scenes/maps/map1.tscn" id="4_ohhpf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3jj6l"]
 
@@ -53,4 +53,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)
 grip_length = 0.2
 slot_area_length = 0.7
 
-[node name="testArea" parent="." instance=ExtResource("4_rh0fg")]
+[node name="world" parent="." instance=ExtResource("4_ohhpf")]
