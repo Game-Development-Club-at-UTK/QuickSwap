@@ -2,20 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fe3r0j7i5i3o"
-path="res://.godot/imported/test_environment_1.png-2809fff641aa6f0ea642bdf76f3bb67e.ctex"
+uid="uid://fdaeph8yhdt1"
+path.s3tc="res://.godot/imported/ChipNormal_Chip_Components.png-eeafb6ce086ee9bb6c4680020c1d050d.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "374557417b9323ec3f81cf2f54925dcc"
 }
 
 [deps]
 
-source_file="res://textures/test_environment_1.png"
-dest_files=["res://.godot/imported/test_environment_1.png-2809fff641aa6f0ea642bdf76f3bb67e.ctex"]
+source_file="res://chips/chip_assets/model/ChipNormal_Chip_Components.png"
+dest_files=["res://.godot/imported/ChipNormal_Chip_Components.png-eeafb6ce086ee9bb6c4680020c1d050d.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

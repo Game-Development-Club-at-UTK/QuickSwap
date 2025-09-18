@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fe3r0j7i5i3o"
-path="res://.godot/imported/test_environment_1.png-2809fff641aa6f0ea642bdf76f3bb67e.ctex"
+uid="uid://bxodm7gkw1bck"
+path.s3tc="res://.godot/imported/TestSymbol.png-2ead448cd9021c88ec2ef66f3bcc839f.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://textures/test_environment_1.png"
-dest_files=["res://.godot/imported/test_environment_1.png-2809fff641aa6f0ea642bdf76f3bb67e.ctex"]
+source_file="res://chips/chip_assets/symbol/TestSymbol.png"
+dest_files=["res://.godot/imported/TestSymbol.png-2ead448cd9021c88ec2ef66f3bcc839f.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
