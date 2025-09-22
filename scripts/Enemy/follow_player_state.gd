@@ -1,4 +1,4 @@
-extends State
+extends EnemyState
 class_name FollowPlayerState
 
 @export var speed : float = 4
