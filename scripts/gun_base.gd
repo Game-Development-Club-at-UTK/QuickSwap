@@ -36,7 +36,7 @@ func _ready(): #in this function we could subtly randomize many of the guns prop
 func _process(_delta):
 	if is_in_editing_mode:
 		for slot in $slots.get_children():
-			slot.get_child(0).global_position = $"/root/base/player/camera".unproject_position(slot.global_position) + Vector2(-40,-40)
+			slot.get_child(0).global_position = $"/root/EnemyTest/player/camera".unproject_position(slot.global_position) + Vector2(-40,-40)
 
 	#basic shooting
 	if Input.is_action_just_pressed("m1"): #when we input
