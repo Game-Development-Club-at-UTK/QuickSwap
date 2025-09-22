@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b0enbn4u8eb8j" path="res://FPS-models/gun2_gun_colors_1.png" id="3_37bq5"]
 [ext_resource type="PackedScene" uid="uid://bg53v1jjfr714" path="res://scenes/gun_base.tscn" id="4_37bq5"]
 [ext_resource type="Shader" uid="uid://mawad8nhgelo" path="res://scripts/outline.gdshader" id="4_tdg3v"]
+[ext_resource type="Shader" uid="uid://8vh175cxhra1" path="res://scripts/baseShader.gdshader" id="5_tdg3v"]
 
 [sub_resource type="Environment" id="Environment_5id02"]
 ambient_light_source = 2
@@ -71,21 +72,27 @@ shadow_mesh = SubResource("ArrayMesh_7417f")
 [sub_resource type="BoxShape3D" id="BoxShape3D_6rknh"]
 size = Vector3(48, 1, 48)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37bq5"]
-albedo_texture = ExtResource("2_f488b")
-uv1_scale = Vector3(0.25, 0.25, 0.25)
-uv1_triplanar = true
-texture_filter = 1
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bou56"]
+render_priority = 0
+shader = ExtResource("5_tdg3v")
+shader_parameter/enable_normal_map = false
+shader_parameter/roughness = 1.0
+shader_parameter/x_albedo = ExtResource("2_f488b")
+shader_parameter/x_scale = 0.25
+shader_parameter/y_albedo = ExtResource("2_f488b")
+shader_parameter/y_scale = 0.25
+shader_parameter/z_albedo = ExtResource("2_f488b")
+shader_parameter/z_scale = 0.25
 
 [sub_resource type="BoxMesh" id="BoxMesh_0wqh7"]
-material = SubResource("StandardMaterial3D_37bq5")
+material = SubResource("ShaderMaterial_bou56")
 size = Vector3(48, 1, 48)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n02js"]
 size = Vector3(1, 16, 48)
 
 [sub_resource type="BoxMesh" id="BoxMesh_h1g5a"]
-material = SubResource("StandardMaterial3D_37bq5")
+material = SubResource("ShaderMaterial_bou56")
 size = Vector3(1, 16, 48)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7lk03"]
@@ -105,15 +112,8 @@ size = Vector3(2, 2, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_37bq5"]
 size = Vector3(16, 4, 16)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdg3v"]
-albedo_texture = ExtResource("2_f488b")
-uv1_scale = Vector3(0.25, 0.25, 0.25)
-uv1_offset = Vector3(0, 0.5, 0)
-uv1_triplanar = true
-texture_filter = 1
-
 [sub_resource type="BoxMesh" id="BoxMesh_tdg3v"]
-material = SubResource("StandardMaterial3D_tdg3v")
+material = SubResource("ShaderMaterial_bou56")
 size = Vector3(16, 4, 16)
 
 [node name="world" type="Node3D"]
@@ -136,7 +136,7 @@ script = ExtResource("3_7lk03")
 shape = SubResource("CapsuleShape3D_tdg3v")
 
 [node name="camera" type="Camera3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0.5, 0)
 
 [node name="hitscanRaycast" type="RayCast3D" parent="player/camera"]
 target_position = Vector3(0, 0, -100)
@@ -280,6 +280,36 @@ transform = Transform3D(0.258819, 0, -0.9659257, 0, 1, 0, 0.9659257, 0, 0.258819
 shape = SubResource("BoxShape3D_7lk03")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="boxes/box4"]
+mesh = SubResource("BoxMesh_37bq5")
+skeleton = NodePath("../../..")
+
+[node name="box5" type="StaticBody3D" parent="boxes"]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 16.5, 1, -6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="boxes/box5"]
+shape = SubResource("BoxShape3D_7lk03")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="boxes/box5"]
+mesh = SubResource("BoxMesh_37bq5")
+skeleton = NodePath("../../..")
+
+[node name="box6" type="StaticBody3D" parent="boxes"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 13.5, 1, -6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="boxes/box6"]
+shape = SubResource("BoxShape3D_7lk03")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="boxes/box6"]
+mesh = SubResource("BoxMesh_37bq5")
+skeleton = NodePath("../../..")
+
+[node name="box7" type="StaticBody3D" parent="boxes"]
+transform = Transform3D(0.9659257, 0, 0.25881898, 0, 1, 0, -0.25881898, 0, 0.9659257, 14.5, 3, -6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="boxes/box7"]
+shape = SubResource("BoxShape3D_7lk03")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="boxes/box7"]
 mesh = SubResource("BoxMesh_37bq5")
 skeleton = NodePath("../../..")
 

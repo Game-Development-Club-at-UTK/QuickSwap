@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cckh6dxkg3m8c"
-path="res://.godot/imported/glow_map2.png-844cef28f48de283735667fa28840998.ctex"
+uid="uid://djo6hi5uh3dg0"
+path="res://.godot/imported/hmap1.png-00cb13e490e13bc069bae8b7219f3f2a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/glow_map2.png"
-dest_files=["res://.godot/imported/glow_map2.png-844cef28f48de283735667fa28840998.ctex"]
+source_file="res://textures/mapSetups/hmap1.png"
+dest_files=["res://.godot/imported/hmap1.png-00cb13e490e13bc069bae8b7219f3f2a.ctex"]
 
 [params]
 

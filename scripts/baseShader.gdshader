@@ -1,6 +1,19 @@
 shader_type spatial;
-//ffrender_mode world_vertex_coords;
+//render_mode world_vertex_coords;
 
+//where my stuff starts
+global uniform sampler2D backgroundTexture : source_color, filter_nearest;
+
+varying vec3 pixelColor;
+varying vec3 lineColor;
+varying vec3 backgroundColor;
+
+varying vec4 viewSpacePos;
+varying vec4 clipSpacePos;
+varying vec3 ndcSpacePos;
+varying vec2 windowSpacePos;
+
+//where their stuff starts
 uniform bool enable_normal_map = false;
 //uniform bool enable_roughness = false;
 uniform float roughness = 1;
@@ -23,9 +36,16 @@ uniform sampler2D z_normal_map: hint_normal, filter_nearest;
 uniform sampler2D z_roughness: hint_roughness_r;
 uniform float z_scale = 1.0;
 
-//where my stuff starts
-varying vec3 pixelColor;
-varying vec3 backgroundColor;
+void vertex() {
+	//2d point finder
+	viewSpacePos = MODELVIEW_MATRIX * vec4(VERTEX, 1.0);
+	clipSpacePos = PROJECTION_MATRIX * viewSpacePos; //convert to clip space
+	ndcSpacePos = clipSpacePos.xyz / clipSpacePos.w; //convert to device space(0 to 1)
+
+	windowSpacePos.x = ((ndcSpacePos.x + 1.0) / 2.0);
+	windowSpacePos.y = ((ndcSpacePos.y + 1.0) / 2.0);
+	//windowSpacePos = windowSpacePos * VIEWPORT_SIZE; //scale to viewport
+}
 
 vec3 triplanar_map(vec3 x, vec3 y, vec3 z, vec3 n) {
 	n = n*n;
@@ -60,16 +80,16 @@ void fragment() {
 	}
 
 	pixelColor = triplanar_tritexture(x_albedo, y_albedo, z_albedo, world_vertex, world_normal);
-
-	ALBEDO = pixelColor;
-//	if (pixelColor == vec3(1.,1.,1.)) {
-//		//backgroundColor = vec3(sin(TIME / 5.0),cos(TIME / 7.0),cos(TIME / 3.0));
-//		backgroundColor = vec3(.5,.5,1.);
-//		ALBEDO = backgroundColor;
-//	}
-//	else {
-//		ALBEDO = pixelColor;
-//	}
+//	ALBEDO = pixelColor;
+	if (pixelColor == vec3(1.,1.,1.)) {
+		lineColor = vec3(sin(TIME / 5.0),sin(TIME / 7.0),cos(TIME / 5.0));
+		ALBEDO = lineColor;
+	}
+	else {
+		//backgroundColor = texture(backgroundTexture, SCREEN_UV).xyz;
+		//ALBEDO = backgroundColor;
+		ALBEDO = pixelColor;
+	}
 
 //	if (enable_roughness) {
 //		ROUGHNESS = triplanar_tritexture(x_roughness, y_roughness, z_roughness, world_vertex, world_normal).r;
