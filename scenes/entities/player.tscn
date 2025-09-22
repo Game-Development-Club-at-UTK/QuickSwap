@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://sdomipm45eeq"]
+
+[ext_resource type="Script" uid="uid://dov03n80fb5s7" path="res://scripts/player/neck.gd" id="1_ucweq"]
+[ext_resource type="Script" uid="uid://dfouv7ymg0iht" path="res://scripts/player/stateMachine/stateMachine.gd" id="2_1ie0h"]
+[ext_resource type="Script" uid="uid://c0pdanadtmgpo" path="res://scripts/player/stateMachine/states/idle.gd" id="3_42nxq"]
+[ext_resource type="Script" uid="uid://lmgvvy3uhjh6" path="res://scripts/player/stateMachine/states/walking.gd" id="4_5u6hq"]
+[ext_resource type="Script" uid="uid://c4myvlwrn2kq3" path="res://scripts/player/stateMachine/states/falling.gd" id="5_d4qa6"]
+[ext_resource type="Script" uid="uid://c8aryjyadcs8n" path="res://scenes/entities/wall_run.gd" id="5_ss7kx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0qees"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0qees"]
+
+[node name="Player" type="CharacterBody3D"]
+
+[node name="PlayerHurtBox" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_0qees")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_0qees")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
+script = ExtResource("2_1ie0h")
+initialState = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("3_42nxq")
+player = NodePath("../..")
+
+[node name="Walking" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "neck")]
+script = ExtResource("4_5u6hq")
+player = NodePath("../..")
+neck = NodePath("../../Neck")
+metadata/_custom_type_script = "uid://dl4oalac4id4b"
+
+[node name="Falling" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("5_d4qa6")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://dl4oalac4id4b"
+
+[node name="WallRun" type="Node" parent="StateMachine"]
+script = ExtResource("5_ss7kx")
+metadata/_custom_type_script = "uid://dl4oalac4id4b"
+
+[node name="Neck" type="Node3D" parent="."]
+script = ExtResource("1_ucweq")
+
+[node name="Camera3D" type="Camera3D" parent="Neck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6472425, 0)
+fov = 90.78415

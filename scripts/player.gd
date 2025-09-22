@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 var timer = 0;
 var health = 5
@@ -27,7 +28,6 @@ func _ready():
 	viewmodelPositionNode = $camera/viewmodelBasePoint
 
 func _process(delta): 
-	
 	#horizontal inputs
 	InputDirection = Vector2(0,0)
 	if Input.is_action_pressed("w"):
