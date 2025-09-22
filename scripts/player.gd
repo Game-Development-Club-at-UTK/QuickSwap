@@ -45,9 +45,15 @@ func _process(delta):
 	velocity.z = InputDirection.y * moveSpeed
 
 	#jump and gravity
+#	if self.is_on_floor():
+#		if Input.is_action_just_pressed("space"):
+#			self.velocity.y += jumpSpeed
+#	else:
+#		self.velocity.y -= gravity * delta
+	if Input.is_action_just_pressed("space"):
+		self.velocity.y += jumpSpeed
 	if self.is_on_floor():
-		if Input.is_action_just_pressed("space"):
-			self.velocity.y += jumpSpeed
+		pass
 	else:
 		self.velocity.y -= gravity * delta
 
@@ -81,6 +87,12 @@ func _process(delta):
 	else:
 		current_target_point = $camera/lookDirectionHint.global_position
 	#we could use look_at_position() to rotate the gun so it always faces the target
+
+#TODO detect that when we collide with a moving platform, move ourselves to the end point of that platform
+	for i in get_slide_collision_count():
+		if get_slide_collision(i).get_collider().is_in_group("movingPlatform"):
+			if get_slide_collision(i).get_collider().isMoving:
+				self.position.y += .5
 
 
 
