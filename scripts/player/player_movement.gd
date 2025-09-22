@@ -19,7 +19,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		#print("Get down here")
 		velocity += get_gravity() * delta
-		
+	
 	#print(is_on_floor())
 	
 	# Handle jump.
