@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfwmyn3hjkevh"
-path.s3tc="res://.godot/imported/circle2.png-fccc6be78ba2e1fe6a55751dcecd6b67.s3tc.ctex"
+uid="uid://bwdogx37uga48"
+path.s3tc="res://.godot/imported/ChipT_Chip_Base.png-283698b10e2576bb7da51685a2e35340.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "919362a9a27078c8a990857ccbb3d750"
+}
 
 [deps]
 
-source_file="res://sprites/circle2.png"
-dest_files=["res://.godot/imported/circle2.png-fccc6be78ba2e1fe6a55751dcecd6b67.s3tc.ctex"]
+source_file="res://chips/chip_assets/model/ChipT_Chip_Base.png"
+dest_files=["res://.godot/imported/ChipT_Chip_Base.png-283698b10e2576bb7da51685a2e35340.s3tc.ctex"]
 
 [params]
 
