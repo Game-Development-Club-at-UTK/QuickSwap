@@ -1,6 +1,6 @@
 @abstract
 extends Node
-class_name State
+class_name EnemyState
 
 func enter() -> void:
 	pass

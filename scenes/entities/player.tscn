@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://c0pdanadtmgpo" path="res://scripts/player/stateMachine/states/idle.gd" id="3_42nxq"]
 [ext_resource type="Script" uid="uid://lmgvvy3uhjh6" path="res://scripts/player/stateMachine/states/walking.gd" id="4_5u6hq"]
 [ext_resource type="Script" uid="uid://c4myvlwrn2kq3" path="res://scripts/player/stateMachine/states/falling.gd" id="5_d4qa6"]
-[ext_resource type="Script" uid="uid://c8aryjyadcs8n" path="res://scenes/entities/wall_run.gd" id="5_ss7kx"]
+[ext_resource type="Script" uid="uid://c8aryjyadcs8n" path="res://scripts/player/stateMachine/states/wall_run.gd" id="5_ss7kx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0qees"]
 
