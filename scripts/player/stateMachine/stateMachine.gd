@@ -16,9 +16,11 @@ func _ready():
 	if initialState:
 		initialState.enter()
 		currentState = initialState
+	else:
+		print("WARNING: NO INITIAL STATE SET FOR (%s)" % get_parent().name)
 
 func _process(delta):
-	print(currentState)
+	#print(currentState)
 	
 	if currentState:
 		currentState.update(delta)

@@ -1,7 +1,7 @@
 extends State
 
 @export var player : CharacterBody3D
-@export var defaultAcceleration : float = 20.1
+@export var defaultAcceleration : float = 5.4
 @export var maxSpeed : float = 5.4
 
 var acceleration : float
@@ -38,3 +38,8 @@ func physics_update(delta: float):
 		player.velocity.z = lerpf(player.velocity.z, direction.z * maxSpeed, acceleration * delta)
 	
 	player.move_and_slide()
+
+func _input(event):
+	#print(event.as_text())
+	if event.is_action_pressed("dash"):
+		transition.emit(self, 'Dash')
