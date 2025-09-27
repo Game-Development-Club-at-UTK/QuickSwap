@@ -7,9 +7,10 @@ var input_dir : Vector2
 var direction : Vector3
 
 var dashSpeed : float = 15.0
+var jumpVelocity : float = 4.5
 
 func enter():
-	print("DASH!")
+	#print("DASH!")
 	input_dir = Input.get_vector("moveLeft", "moveRight", "moveForward", "moveBack")
 	direction = (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
@@ -27,4 +28,16 @@ func physics_update(_delta: float):
 
 func _on_dash_timer_timeout() -> void:
 	#print("HALT!")
-	transition.emit(self, "Idle")
+	if !player.is_on_floor():
+		transition.emit(self, "Falling")
+	elif Input.get_vector("moveLeft", "moveRight", "moveForward", "moveBack"):
+		transition.emit(self, "Walking")
+	elif !Input.get_vector("moveLeft", "moveRight", "moveForward", "moveBack"):
+		transition.emit(self, "Idle")
+		
+func _input(event):
+	if event.is_action_pressed("jump") and player.is_on_floor():
+		#print("Jump!")
+		player.velocity.y = jumpVelocity
+		transition.emit(self, "Falling")
+	
