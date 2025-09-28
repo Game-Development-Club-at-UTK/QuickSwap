@@ -34,8 +34,11 @@ func physics_update(delta: float):
 			acceleration *= 8
 		acceleration = defaultAcceleration
 		
-		player.velocity.x = lerpf(player.velocity.x, direction.x * maxSpeed, acceleration * delta)
-		player.velocity.z = lerpf(player.velocity.z, direction.z * maxSpeed, acceleration * delta)
+		
+		
+		#if sqrt(pow(player.velocity.x, 2) + pow(player.velocity.z, 2)) < abs(sqrt(pow(direction.x * maxSpeed, 2) + pow(direction.z * maxSpeed, 2))):
+			#player.velocity.x = lerpf(player.velocity.x, direction.x * maxSpeed, acceleration * delta)
+			#player.velocity.z = lerpf(player.velocity.z, direction.z * maxSpeed, acceleration * delta)
 	
 	player.move_and_slide()
 

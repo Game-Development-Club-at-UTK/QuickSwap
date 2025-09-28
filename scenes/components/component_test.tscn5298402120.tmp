@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://bioe08dmhwv4c"]
+
+[ext_resource type="Texture2D" uid="uid://fe3r0j7i5i3o" path="res://textures/test_environment_1.png" id="1_fvp1p"]
+[ext_resource type="Script" uid="uid://licd58dnsl4c" path="res://scripts/component_manager.gd" id="2_lcgcx"]
+[ext_resource type="PackedScene" uid="uid://sdomipm45eeq" path="res://scenes/entities/player.tscn" id="3_gt8xw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lcgcx"]
+size = Vector3(40, 1, 42)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y62wj"]
+albedo_texture = ExtResource("1_fvp1p")
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_gt8xw"]
+material = SubResource("StandardMaterial3D_y62wj")
+size = Vector3(40, 1, 42)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fvp1p"]
+
+[sub_resource type="Environment" id="Environment_0ymjl"]
+
+[node name="componentTest" type="Node3D"]
+
+[node name="ground" type="StaticBody3D" parent="."]
+transform = Transform3D(5.9883738, 0, 0, 0, 1, 0, 0, 0, 5.375361, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
+shape = SubResource("BoxShape3D_lcgcx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_gt8xw")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.903057, 1.5575633, 0.84088755)
+mesh = SubResource("CapsuleMesh_fvp1p")
+
+[node name="ComponentManager" type="Node" parent="."]
+script = ExtResource("2_lcgcx")
+metadata/_custom_type_script = "uid://licd58dnsl4c"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.965926, 0.224144, -0.12941, 0, 0.5, 0.866025, 0.258819, -0.836516, 0.482963, 0, 1, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0ymjl")
+
+[node name="Player" parent="." instance=ExtResource("3_gt8xw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.249647, 1.500001, -8.98552)
