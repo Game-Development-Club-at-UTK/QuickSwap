@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://h4qg7s7gddya"]
+
+[ext_resource type="Texture2D" uid="uid://bbpomehk1ihih" path="res://sprites/slotBackground.png" id="1_dkyc6"]
+[ext_resource type="Script" uid="uid://dsnrnomebe10g" path="res://scripts/UIelements/chipSlot.gd" id="2_ldl72"]
+
+[node name="chip_slot" type="TextureButton"]
+visible = false
+offset_right = 64.0
+offset_bottom = 64.0
+texture_normal = ExtResource("1_dkyc6")
+script = ExtResource("2_ldl72")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
