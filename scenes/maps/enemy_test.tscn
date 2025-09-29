@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://rxm2xai3no84" path="res://scenes/UI/UI.tscn" id="2_frm6d"]
 [ext_resource type="PackedScene" uid="uid://dsor17jldlxvw" path="res://scenes/enemy.tscn" id="4_c72o4"]
 [ext_resource type="PackedScene" uid="uid://sdomipm45eeq" path="res://scenes/entities/player.tscn" id="4_cmvi3"]
+[ext_resource type="PackedScene" uid="uid://jxqs23f371kq" path="res://scenes/entities/drone.tscn" id="5_cmvi3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_frm6d"]
 
@@ -16,8 +17,6 @@ uv1_world_triplanar = true
 material = SubResource("StandardMaterial3D_c72o4")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c72o4"]
-
-[sub_resource type="Environment" id="Environment_quedl"]
 
 [node name="EnemyTest" type="Node3D"]
 
@@ -37,10 +36,22 @@ shape = SubResource("BoxShape3D_c72o4")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.965926, 0.224144, -0.12941, 0, 0.5, 0.866025, 0.258819, -0.836516, 0.482963, 0, 1, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_quedl")
-
 [node name="Player" parent="." instance=ExtResource("4_cmvi3")]
 
 [node name="enemy" parent="." instance=ExtResource("4_c72o4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5539975, 12.129801, -15.673897)
+
+[node name="enemy2" parent="." instance=ExtResource("4_c72o4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.48324, 6.656212, 1.2367878)
+
+[node name="enemy3" parent="." instance=ExtResource("4_c72o4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.098741, 12.129801, 17.7669)
+
+[node name="enemy4" parent="." instance=ExtResource("4_c72o4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.719446, 23.536798, -15.673897)
+
+[node name="enemy5" parent="." instance=ExtResource("4_c72o4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.363958, 12.129801, -15.673897)
+
+[node name="drone" parent="." instance=ExtResource("5_cmvi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.164955, 8.420342, 1.7562225)

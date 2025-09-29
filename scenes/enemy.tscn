@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dsor17jldlxvw"]
+[gd_scene load_steps=7 format=3 uid="uid://dsor17jldlxvw"]
 
 [ext_resource type="Script" uid="uid://b188mey8mrd64" path="res://scripts/Enemy/enemy.gd" id="1_dknon"]
 [ext_resource type="Script" uid="uid://cilyiatuty5yf" path="res://scripts/Enemy/states/follow_player.gd" id="2_4ra3w"]
 [ext_resource type="Script" uid="uid://dfouv7ymg0iht" path="res://scripts/stateMachine/stateMachine.gd" id="2_5uy6h"]
-[ext_resource type="Script" uid="uid://dl4oalac4id4b" path="res://scripts/stateMachine/state_class.gd" id="2_md0e3"]
 [ext_resource type="Script" uid="uid://ls5xqoxlywig" path="res://scripts/Enemy/states/falling.gd" id="5_c4w8v"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qgjij"]
@@ -31,10 +30,6 @@ initialState = NodePath("Falling")
 [node name="FollowPlayer" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("2_4ra3w")
 enemy = NodePath("../..")
-metadata/_custom_type_script = "uid://dl4oalac4id4b"
-
-[node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("2_md0e3")
 metadata/_custom_type_script = "uid://dl4oalac4id4b"
 
 [node name="Falling" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]

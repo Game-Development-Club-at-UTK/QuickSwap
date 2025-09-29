@@ -2,7 +2,7 @@ extends State
 
 @export var enemy : Enemy
 
-func update(_delta):
+func physics_update(_delta):
 	if enemy:
 		if not enemy.is_on_floor():
 			enemy.acc += enemy.get_gravity()
