@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm16yj2dh4mmv"]
+
+[ext_resource type="Script" uid="uid://bubvfw6x3ogti" path="res://scripts/UIelements/chipBase.gd" id="2_bb1am"]
+
+[node name="Chip" type="Sprite2D"]
+centered = false
+script = ExtResource("2_bb1am")

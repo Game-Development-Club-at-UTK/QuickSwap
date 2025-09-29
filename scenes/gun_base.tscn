@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bg53v1jjfr714"]
+
+[ext_resource type="Script" uid="uid://7fno6sxhwva5" path="res://scripts/gun_base.gd" id="1_fc8r1"]
+[ext_resource type="PackedScene" uid="uid://dt8vi0b2de8ie" path="res://FPS-models/gun1.blend" id="2_uagjl"]
+[ext_resource type="PackedScene" uid="uid://h4qg7s7gddya" path="res://scenes/UI/chip_slot.tscn" id="3_3kkon"]
+
+[node name="gun_base" type="Node3D"]
+script = ExtResource("1_fc8r1")
+shot_capacity = 3
+chip_slot_scene = ExtResource("3_3kkon")
+
+[node name="models" type="Node3D" parent="."]
+
+[node name="gunModel1" parent="models" instance=ExtResource("2_uagjl")]
+transform = Transform3D(-2.18557e-09, 0, -0.05, 0, 0.05, 0, 0.05, 0, -2.18557e-09, 0, 0, 0)
+
+[node name="slots" type="Node3D" parent="."]
