@@ -1,3 +1,4 @@
+class_name StateMachine
 extends Node
 
 @export var initialState : State
@@ -16,6 +17,8 @@ func _ready():
 	if initialState:
 		initialState.enter()
 		currentState = initialState
+	else:
+		print("WARNING: NO INITIAL STATE SET FOR (%s)" % get_parent().name)
 
 func _process(delta):
 	#print(currentState)

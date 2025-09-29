@@ -11,10 +11,13 @@ extends State
 # @onready var transform : Transform3D = player.transform
 
 var acceleration : float
+var doubleJumpVelocity : float
+
 # var currentDirectionX : float = 0.0
 # var currentDirectionZ : float = 0.0
 
 func enter():
+	doubleJumpVelocity = jumpVelocity / 2
 	acceleration = defaultAcceleration
 
 func exit():
@@ -52,5 +55,10 @@ func physics_update(delta: float):
 	else:
 		#player.velocity.x = 0; player.velocity.z = 0
 		transition.emit(self, 'Idle')
-	
+		
 	player.move_and_slide()
+
+func _input(event):
+	#print(event.as_text())
+	if event.is_action_pressed("dash"):
+		transition.emit(self, 'Dash')

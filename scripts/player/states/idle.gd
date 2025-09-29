@@ -2,12 +2,14 @@ extends State
 
 @export var player : CharacterBody3D
 @export var jumpVelocity : float = 4.5
-@export var friction : float = 0.2
+@export var friction : float = 0.4
+
+var doubleJumpVelocity : float
 
 #@onready var velocity : Vector3 = player.velocity
 
 func enter():
-	pass
+	doubleJumpVelocity = jumpVelocity / 2
 
 func exit():
 	pass
