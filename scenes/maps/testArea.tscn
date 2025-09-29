@@ -1,7 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://c04mj2er5xpbr"]
+
+[gd_scene load_steps=16 format=3 uid="uid://c04mj2er5xpbr"]
 
 [ext_resource type="Texture2D" uid="uid://fe3r0j7i5i3o" path="res://textures/test_environment_1.png" id="1_sqgfi"]
 [ext_resource type="PackedScene" uid="uid://dsor17jldlxvw" path="res://scenes/enemy.tscn" id="2_5id02"]
+[ext_resource type="PackedScene" uid="uid://sdomipm45eeq" path="res://scenes/entities/player.tscn" id="3_fax88"]
+
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6rknh"]
 size = Vector3(40, 1, 42)
@@ -294,3 +297,8 @@ transform = Transform3D(0.965926, 0.224144, -0.12941, 0, 0.5, 0.866025, 0.258819
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5id02")
+
+
+[node name="Player" parent="." instance=ExtResource("3_fax88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.079303026, 1.5000002, 3.8027334)
+

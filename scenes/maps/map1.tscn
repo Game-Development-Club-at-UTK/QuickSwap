@@ -1,3 +1,4 @@
+
 [gd_scene load_steps=23 format=4 uid="uid://bd2x2eyl63usk"]
 
 [ext_resource type="Texture2D" uid="uid://d2nhaw0o75ojc" path="res://textures/wall2.png" id="2_f488b"]
@@ -5,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b0enbn4u8eb8j" path="res://FPS-models/gun2_gun_colors_1.png" id="3_37bq5"]
 [ext_resource type="PackedScene" uid="uid://bg53v1jjfr714" path="res://scenes/gun_base.tscn" id="4_37bq5"]
 [ext_resource type="Shader" uid="uid://mawad8nhgelo" path="res://scripts/outline.gdshader" id="4_tdg3v"]
+
 [ext_resource type="Shader" uid="uid://8vh175cxhra1" path="res://scripts/baseShader.gdshader" id="5_tdg3v"]
 
 [sub_resource type="Environment" id="Environment_5id02"]
@@ -14,6 +16,7 @@ glow_enabled = true
 glow_strength = 1.1
 glow_bloom = 0.3
 glow_blend_mode = 0
+
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tdg3v"]
 
@@ -69,12 +72,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_7417f")
 
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_6rknh"]
 size = Vector3(48, 1, 48)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bou56"]
 render_priority = 0
 shader = ExtResource("5_tdg3v")
+
 shader_parameter/enable_normal_map = false
 shader_parameter/roughness = 1.0
 shader_parameter/x_albedo = ExtResource("2_f488b")
@@ -83,6 +88,7 @@ shader_parameter/y_albedo = ExtResource("2_f488b")
 shader_parameter/y_scale = 0.25
 shader_parameter/z_albedo = ExtResource("2_f488b")
 shader_parameter/z_scale = 0.25
+
 
 [sub_resource type="BoxMesh" id="BoxMesh_0wqh7"]
 material = SubResource("ShaderMaterial_bou56")
@@ -124,6 +130,7 @@ light_energy = 0.4
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5id02")
+
 
 [node name="player" type="CharacterBody3D" parent="."]
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -16, 2, 16)
@@ -170,6 +177,7 @@ transform = Transform3D(4.222196e-09, -0.025881894, -0.09659258, -1.1313337e-09,
 [node name="Cube" type="MeshInstance3D" parent="player/camera/viewModel/gun2"]
 mesh = SubResource("ArrayMesh_7kr2o")
 skeleton = NodePath("")
+
 
 [node name="exterior" type="Node3D" parent="."]
 
@@ -358,3 +366,7 @@ shape = SubResource("BoxShape3D_37bq5")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="platforms/platform4"]
 mesh = SubResource("BoxMesh_tdg3v")
 skeleton = NodePath("../../..")
+
+
+[node name="Player" parent="." instance=ExtResource("3_f488b")]
+
