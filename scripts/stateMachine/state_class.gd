@@ -35,6 +35,7 @@ signal transition
 
 #////////////#
 func enter():
+	transition.is_null()
 	pass
 
 #////////////#

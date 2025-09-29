@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="FPS"
-run/main_scene="res://base.tscn"
+run/main_scene="uid://dcbaywpgqcxjn"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://sprites/hitscan.png"
+
+[global_group]
+
+player="Player Group"
 
 [input]
 

@@ -1,6 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://sdomipm45eeq"]
 
 [ext_resource type="Script" uid="uid://dov03n80fb5s7" path="res://scripts/player/neck.gd" id="1_ucweq"]
+
 [ext_resource type="Script" uid="uid://dfouv7ymg0iht" path="res://scripts/player/stateMachine/stateMachine.gd" id="2_1ie0h"]
 [ext_resource type="Script" uid="uid://c0pdanadtmgpo" path="res://scripts/player/stateMachine/states/idle.gd" id="3_42nxq"]
 [ext_resource type="Script" uid="uid://lmgvvy3uhjh6" path="res://scripts/player/stateMachine/states/walking.gd" id="4_5u6hq"]
@@ -9,14 +10,16 @@
 [ext_resource type="Script" uid="uid://s68ske2ous5r" path="res://scripts/player/stateMachine/states/dash.gd" id="6_ss7kx"]
 [ext_resource type="PackedScene" uid="uid://c2hjobohkix0g" path="res://scenes/components/hitbox_component.tscn" id="8_c5rqy"]
 
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0qees"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_0qees"]
 
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_dnykm"]
 size = Vector3(1.5454102, 1.890625, 1.4515991)
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 
 [node name="PlayerCollideBox" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_0qees")
