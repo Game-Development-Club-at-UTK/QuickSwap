@@ -1,0 +1,50 @@
+[gd_scene load_steps=10 format=3 uid="uid://dcbaywpgqcxjn"]
+
+[ext_resource type="Texture2D" uid="uid://fe3r0j7i5i3o" path="res://Maps/test_environment_1.png" id="1_quedl"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_tg44o"]
+[ext_resource type="PackedScene" path="res://scenes/UI/UI.tscn" id="2_frm6d"]
+[ext_resource type="PackedScene" uid="uid://dsor17jldlxvw" path="res://Entities/Character/Enemy/Melee/melee_enemy.tscn" id="4_c72o4"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_frm6d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c72o4"]
+albedo_texture = ExtResource("1_quedl")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_cmvi3"]
+material = SubResource("StandardMaterial3D_c72o4")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c72o4"]
+
+[sub_resource type="Environment" id="Environment_quedl"]
+
+[node name="EnemyTest" type="Node3D"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_frm6d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
+mesh = SubResource("BoxMesh_cmvi3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
+shape = SubResource("BoxShape3D_c72o4")
+
+[node name="player" parent="." instance=ExtResource("1_tg44o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.1691384, 0)
+
+[node name="UI" parent="." instance=ExtResource("2_frm6d")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.965926, 0.224144, -0.12941, 0, 0.5, 0.866025, 0.258819, -0.836516, 0.482963, 0, 1, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_quedl")
+
+[node name="enamy" parent="." instance=ExtResource("4_c72o4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09022522, 13.338537, -12.815468)
+
+[node name="enamy2" parent="." instance=ExtResource("4_c72o4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10803127, 13.63136, -10.794487)

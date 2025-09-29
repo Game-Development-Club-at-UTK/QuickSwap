@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsor17jldlxvw"]
+
+[ext_resource type="Script" uid="uid://b188mey8mrd64" path="res://Entities/Character/Enemy/enemy.gd" id="1_dknon"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qgjij"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sec0p"]
+
+[node name="enemy" type="CharacterBody3D" groups=["enemy"]]
+script = ExtResource("1_dknon")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_qgjij")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_sec0p")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.5)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="StateMachine" type="Node" parent="."]
+metadata/_custom_type_script = "uid://cgvlrf7r2xk32"
+
+[node name="FollowPlayerState" type="Node" parent="StateMachine"]
+metadata/_custom_type_script = "uid://nk6utub02pmj"
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+metadata/_custom_type_script = "uid://dqgf7jen7pit5"
