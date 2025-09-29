@@ -1,7 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://bd2x2eyl63usk"]
+
+[gd_scene load_steps=23 format=4 uid="uid://bd2x2eyl63usk"]
 
 [ext_resource type="Texture2D" uid="uid://d2nhaw0o75ojc" path="res://textures/wall2.png" id="2_f488b"]
-[ext_resource type="PackedScene" uid="uid://sdomipm45eeq" path="res://scenes/entities/player.tscn" id="3_f488b"]
+[ext_resource type="Script" uid="uid://bnwh8l4wfp43n" path="res://scripts/player.gd" id="3_7lk03"]
+[ext_resource type="Texture2D" uid="uid://b0enbn4u8eb8j" path="res://FPS-models/gun2_gun_colors_1.png" id="3_37bq5"]
+[ext_resource type="PackedScene" uid="uid://bg53v1jjfr714" path="res://scenes/gun_base.tscn" id="4_37bq5"]
+[ext_resource type="Shader" uid="uid://mawad8nhgelo" path="res://scripts/outline.gdshader" id="4_tdg3v"]
+
 [ext_resource type="Shader" uid="uid://8vh175cxhra1" path="res://scripts/baseShader.gdshader" id="5_tdg3v"]
 
 [sub_resource type="Environment" id="Environment_5id02"]
@@ -12,12 +17,78 @@ glow_strength = 1.1
 glow_bloom = 0.3
 glow_blend_mode = 0
 
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tdg3v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ykcni"]
+render_priority = 0
+shader = ExtResource("4_tdg3v")
+shader_parameter/scale = 1.0
+shader_parameter/outline_spread = 1.0
+shader_parameter/_Color = Color(0.4898336, 0.6540255, 1, 1)
+shader_parameter/_DepthNormalThreshold = 0.1
+shader_parameter/_DepthNormalThresholdScale = 3.0
+shader_parameter/_DepthThreshold = 1.5
+shader_parameter/_NormalThreshold = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bou56"]
+resource_name = "Material"
+next_pass = SubResource("ShaderMaterial_ykcni")
+cull_mode = 2
+albedo_texture = ExtResource("3_37bq5")
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_7417f"]
+_surfaces = [{
+"aabb": AABB(-12, -1, -1, 24, 2, 2),
+"format": 34896613377,
+"index_count": 156,
+"index_data": PackedByteArray("CwACAAMAAQADAAIAAQAEAAMABAALAAMAAAABAAIABAABAAAACwAUAAIAAAACABQABAAVAAsABAAAABUAFQAWAAsAFgAUAAsACQAAABQAFQAXABYAFQAAABAAFQAQABcADgAAAAkADgAQAAAACQAUAA0ADgAJAA0ADgANAA8ADwAQAA4ADQAUAAwADQAMAA8AFgAMABQADwAMABAAFwAYABYAGAAMABYACgAQAAwAFwAZABgAFwAQABoAFwAaABkAEQAQAAoAEQAaABAACgAMABIAEQAKABIAEwAaABEAEQASABMAEgAbABMAEgAMABsAEwAbABoAGAAbAAwAGQAaAAgACAAaABsAGQAFABgABQAbABgAGQAIAAYAGQAGAAUACAAbAAcABgAIAAcABQAHABsABgAHAAUA"),
+"lods": [0.00059206405, PackedByteArray("CwACAAMAAQADAAIABAALAAMAAQAEAAMABAABAAAAAAABAAIACQAAAAIACwAMAAIACQACAA0ADQACAAwADgAJAA0ADgAAAAkADgANAA8ADQAMAA8ADgAQAAAADwAQAA4ADwAMABAABAAAABAABAAFAAsABQAMAAsABAAGAAUACgAQAAwABAAIAAYABAAQAAgABgAHAAUABQAHAAwABgAIAAcAEQAQAAoAEQAIABAACgAMABIAEQAKABIAEgAMAAcAEwAIABEAEQASABMAEwAHAAgAEgAHABMA"), 1.4539671, PackedByteArray("AAABAAIAAQADAAIAAQAEAAMABAABAAAABAAFAAMABAAGAAUABQAHAAMAAwAHAAIABgAHAAUABAAIAAYABgAIAAcABAAAAAgACQACAAcACQAAAAIACQAHAAAACgAAAAcACgAIAAAACgAHAAgA")],
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 28,
+"vertex_data": PackedByteArray("/38AAP//AAAAAAAA//8AAAAA/////wAAAAD//wAAAAAAAAAAAAAAAP////8AAAAA//8AAAAAAAD///////8AAP//AAD//wAAVIX/P///AABUxf8///8AAP9///8AAAAA/7//////AABUhf+///8AAKm6/z///wAAqbr/v///AAD/vwAA//8AAP/P/z///wAAVMX/v///AAD/z/+///8AAP9//////wAA/38AAAAAAAD/v///AAAAAP+/AAAAAAAAVNX//wAAAABU1QAAAAAAAFTVAAD//wAAVNX/////AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_7kr2o"]
+resource_name = "gun2_Cube"
+_surfaces = [{
+"aabb": AABB(-12, -1, -1, 24, 2, 2),
+"attribute_data": PackedByteArray("oFHQvY9j0L2PY67h4VDIxrE/ruGKR8jGsT/QvXUK0L1TLq7hdQqu4VMu0L3TG9C9sT+u4dMbruGxP9C90xuwvrE/sL6xP5/QsT/QvdMb0L3TG0zhsT+u4bE/TOHTG67hUy7QvdMbruFTLq7h0xvQvdMbXc+xP6bqaEnIxuFQt9ipSNC9qUiu4WhJt9hMRcjGike32ExFt9jkCa7hsT/ZtOh+jHlhhnuL6H57i2GGjHnMeox5Cn17i8x6e4sKfYx5sT9dz9MbpurTGyrmsT8q5qBRruEtRNC9LUSu4dMbVbmxP1W50xvZtNMbn9BXF9C9Vxeu4dwS0L3cEq7h5AnQvQ=="),
+"format": 34896613399,
+"index_count": 156,
+"index_data": PackedByteArray("HAAWABQAHAAwABYAMQAwABwAMQAdADAAMgAdADEAMgAzAB0AFwAzADIAFwAVADMAAAACADQAAAABAAIAAwAAADQAHgAAAAMAAwA0AB8AHgAgAAAAHwA0ACEAIgAgAB4AHwAhACIAIgAhACAABQAgACEAIwAgAAUABQAhACQAIwA1ACAAJQA1ACMAJAAhADYAJAA2ACUAJQA2ADUABgA1ADYABgA2AAQABwAIAAkABwAKAAgANwASABMANwA4ABIAOQA4ADcAOQAnADgAOgAnADkAOgARACcADwARADoADwAQABEACwAMAA0ACwAOAAwAOwAZADwAOwAbABkAPQA7ADwAPQA8AD4APwA9AD4APwA+ACYAGAA/ACYAGAAmABoAKAApACoAKAArACkALAAtAC4ALAAvAC0A"),
+"lods": [0.00059206405, PackedByteArray("HAAWABQAHAAdABYAFwAdABwAFwAVAB0AAAABAAIAAwAAAAIAHgAAAAMAAwACAB8AHgAgAAAAHwACACEAIgAgAB4AHwAhACIAIgAhACAABQAgACEAIwAgAAUABQAhACQAIwAGACAAJAAhAAQAJQAGACMAJAAEACUAJQAEAAYABwAIAAkABwAKAAgACwAMAA0ACwAOAAwAGAAmABoAGAAZACYAGAAbABkADwAQABEADwARACcADwAnABIADwASABMAKAApACoAKAArACkALAAtAC4ALAAvAC0A"), 1.4539671, PackedByteArray("AAABAAIAAwAAAAIAAwACAAQAAwAEAAAABQAAAAQABQAGAAAABQAEAAYABwAIAAkABwAKAAgACwAMAA0ACwAOAAwADwAQABEADwARABIADwASABMAFAAVABYAFwAVABQAGAAZABoAGAAbABkA")],
+"material": SubResource("StandardMaterial3D_bou56"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 64,
+"vertex_data": PackedByteArray("/38AAP////8AAAAA/////wAA////////VIX/P////////////////1TF/z////////8AAP////8AAAAA/////wAA//8AAP//AAD///////8AAAAAAAD/////AAAAAP//////////////////AAD/////AAD/////AAAAAAAAVNUAAAAA//9U1f9/AAD//6oq//8AAP//VNX//wAAAABU1QAA//8AAFTV////////VNUAAP////9U1f////8AAFTVAAAAAAAAAAD/////AAD//wAA//8AAAAA//8AAAAA////f///AACqKv+//////1TVqbr/P/////9Uhf+///////+/AAD//////7////////+puv+////////P/z//////VMX/v///////z/+///////9///8AAP///78AAP//VNWpuv8//////1SF/7//////qbr/v/////9Uhf8////////P/z//////VMX/v///////z/+//////1TF/z///////3//////qir/v///AABU1VTV//8AAFTVVNX/////VNX/f////////1TVAAD/////VNX///////9U1QAAAABU1VTVAAD//1TV/78AAAAAVNX/fwAAAACqKlTVAAAAAP//VNX//wAA////vwAAAAD///+///8AAP///38AAAAA////f/9//3//f/9//3//f/9//3//f/9//3//f/9//z//f/8//3//P/9//z//f/+//3//v/9//7//f/+//3+qKlTVqipU1aoqVNWqKlTVqipU1aqqqqqqqqqqqqqqqqqqqqr/f///////f/9///////9/qqqqqqqqqqr/f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f////3+qKlTV/3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3+qqqqqqqqqqqqqqqqqqqqq/3//f/9//3//f/9/qipU1aoqVNWqKlTVqipU1f///3////9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_7417f")
+
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_6rknh"]
 size = Vector3(48, 1, 48)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bou56"]
 render_priority = 0
 shader = ExtResource("5_tdg3v")
+
+shader_parameter/enable_normal_map = false
+shader_parameter/roughness = 1.0
+shader_parameter/x_albedo = ExtResource("2_f488b")
+shader_parameter/x_scale = 0.25
+shader_parameter/y_albedo = ExtResource("2_f488b")
+shader_parameter/y_scale = 0.25
+shader_parameter/z_albedo = ExtResource("2_f488b")
+shader_parameter/z_scale = 0.25
+
 
 [sub_resource type="BoxMesh" id="BoxMesh_0wqh7"]
 material = SubResource("ShaderMaterial_bou56")
@@ -59,6 +130,54 @@ light_energy = 0.4
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5id02")
+
+
+[node name="player" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -16, 2, 16)
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("3_7lk03")
+
+[node name="hitbox" type="CollisionShape3D" parent="player"]
+shape = SubResource("CapsuleShape3D_tdg3v")
+
+[node name="camera" type="Camera3D" parent="player"]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0.5, 0)
+
+[node name="hitscanRaycast" type="RayCast3D" parent="player/camera"]
+target_position = Vector3(0, 0, -100)
+collision_mask = 3
+
+[node name="lookDirectionHint" type="Node3D" parent="player/camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
+
+[node name="viewmodelBasePoint" type="Node3D" parent="player/camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, -0.9)
+
+[node name="viewmodelEditPoint" type="Node3D" parent="player/camera"]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 0.6, -0.0999999, -0.7)
+
+[node name="viewModel" type="Node3D" parent="player/camera"]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 1, 0)
+top_level = true
+
+[node name="projectileSpawnPoint" type="Node3D" parent="player/camera/viewModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)
+
+[node name="gun_base" parent="player/camera/viewModel" instance=ExtResource("4_37bq5")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+visible = false
+grip_length = 0.2
+slot_area_length = 0.7
+
+[node name="gun2" type="Node3D" parent="player/camera/viewModel"]
+transform = Transform3D(4.222196e-09, -0.025881894, -0.09659258, -1.1313337e-09, -0.09659258, 0.025881896, -0.1, 4.2351642e-23, -4.371139e-09, 0, 0, 0)
+
+[node name="Cube" type="MeshInstance3D" parent="player/camera/viewModel/gun2"]
+mesh = SubResource("ArrayMesh_7kr2o")
+skeleton = NodePath("")
+
 
 [node name="exterior" type="Node3D" parent="."]
 
@@ -248,4 +367,6 @@ shape = SubResource("BoxShape3D_37bq5")
 mesh = SubResource("BoxMesh_tdg3v")
 skeleton = NodePath("../../..")
 
+
 [node name="Player" parent="." instance=ExtResource("3_f488b")]
+

@@ -1,19 +1,25 @@
+
 [gd_scene load_steps=12 format=3 uid="uid://sdomipm45eeq"]
 
 [ext_resource type="Script" uid="uid://dov03n80fb5s7" path="res://scripts/player/neck.gd" id="1_ucweq"]
+
 
 [ext_resource type="Script" uid="uid://dfouv7ymg0iht" path="res://scripts/player/stateMachine/stateMachine.gd" id="2_1ie0h"]
 [ext_resource type="Script" uid="uid://c0pdanadtmgpo" path="res://scripts/player/stateMachine/states/idle.gd" id="3_42nxq"]
 [ext_resource type="Script" uid="uid://lmgvvy3uhjh6" path="res://scripts/player/stateMachine/states/walking.gd" id="4_5u6hq"]
 [ext_resource type="Script" uid="uid://c4myvlwrn2kq3" path="res://scripts/player/stateMachine/states/falling.gd" id="5_d4qa6"]
+
 [ext_resource type="Script" uid="uid://c8aryjyadcs8n" path="res://scripts/player/stateMachine/states/wall_run.gd" id="5_ss7kx"]
 [ext_resource type="Script" uid="uid://s68ske2ous5r" path="res://scripts/player/stateMachine/states/dash.gd" id="6_ss7kx"]
 [ext_resource type="PackedScene" uid="uid://c2hjobohkix0g" path="res://scenes/components/hitbox_component.tscn" id="8_c5rqy"]
 
 
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0qees"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_0qees"]
+
+
 
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dnykm"]
@@ -22,6 +28,7 @@ size = Vector3(1.5454102, 1.890625, 1.4515991)
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 
 [node name="PlayerCollideBox" type="CollisionShape3D" parent="."]
+
 shape = SubResource("CapsuleShape3D_0qees")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -50,6 +57,7 @@ metadata/_custom_type_script = "uid://dl4oalac4id4b"
 script = ExtResource("5_ss7kx")
 metadata/_custom_type_script = "uid://dl4oalac4id4b"
 
+
 [node name="Dash" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "dashTime")]
 script = ExtResource("6_ss7kx")
 player = NodePath("../..")
@@ -68,6 +76,7 @@ damage = 50.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015541434, 0.4453125, 0.025054932)
 shape = SubResource("BoxShape3D_dnykm")
 
+
 [node name="Neck" type="Node3D" parent="."]
 script = ExtResource("1_ucweq")
 
@@ -75,6 +84,8 @@ script = ExtResource("1_ucweq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6472425, 0)
 fov = 90.78415
 
+
 [connection signal="timeout" from="StateMachine/Dash/DashTimer" to="StateMachine/Dash" method="_on_dash_timer_timeout"]
 
 [editable path="Components/HitboxComponent"]
+

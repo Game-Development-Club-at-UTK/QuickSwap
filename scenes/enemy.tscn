@@ -1,9 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://dsor17jldlxvw"]
 
 [ext_resource type="Script" uid="uid://b188mey8mrd64" path="res://scripts/Enemy/enemy.gd" id="1_dknon"]
-[ext_resource type="Script" uid="uid://cilyiatuty5yf" path="res://scripts/Enemy/states/follow_player.gd" id="2_4ra3w"]
-[ext_resource type="Script" uid="uid://dfouv7ymg0iht" path="res://scripts/stateMachine/stateMachine.gd" id="2_5uy6h"]
-[ext_resource type="Script" uid="uid://ls5xqoxlywig" path="res://scripts/Enemy/states/falling.gd" id="5_c4w8v"]
+
+[ext_resource type="Script" uid="uid://cgvlrf7r2xk32" path="res://scripts/Enemy/state_machine.gd" id="2_md0e3"]
+[ext_resource type="Script" uid="uid://nk6utub02pmj" path="res://scripts/Enemy/follow_player_state.gd" id="3_4ra3w"]
+[ext_resource type="Script" uid="uid://dqgf7jen7pit5" path="res://scripts/Enemy/idle_state.gd" id="4_5uy6h"]
+
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qgjij"]
 
@@ -23,6 +25,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.5)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
 script = ExtResource("2_5uy6h")
 initialState = NodePath("Falling")
@@ -36,3 +39,4 @@ metadata/_custom_type_script = "uid://dl4oalac4id4b"
 script = ExtResource("5_c4w8v")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://dl4oalac4id4b"
+
