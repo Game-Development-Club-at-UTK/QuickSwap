@@ -4,5 +4,6 @@
 
 [node name="HurtboxComponent" type="Area3D"]
 script = ExtResource("1_trd8p")
+metadata/_custom_type_script = "uid://50rop5er4l3s"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

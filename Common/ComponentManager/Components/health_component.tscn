@@ -4,3 +4,4 @@
 
 [node name="HealthComponent" type="Node"]
 script = ExtResource("1_2wcl1")
+metadata/_custom_type_script = "uid://dwdslavqot7d2"

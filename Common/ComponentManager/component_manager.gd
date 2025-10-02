@@ -1,0 +1,2 @@
+class_name ComponentManager
+extends Node3D

@@ -4,6 +4,7 @@
 
 [node name="HitboxComponent" type="Area3D"]
 script = ExtResource("1_okvui")
+metadata/_custom_type_script = "uid://bi6i1gmlqofaa"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 
