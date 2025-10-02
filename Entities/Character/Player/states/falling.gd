@@ -1,3 +1,4 @@
+class_name FallingState
 extends State
 
 @export var player : CharacterBody3D

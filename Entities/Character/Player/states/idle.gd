@@ -1,3 +1,4 @@
+class_name IdleState
 extends State
 
 @export var player : CharacterBody3D

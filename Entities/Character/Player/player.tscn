@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://sdomipm45eeq"]
+[gd_scene load_steps=14 format=3 uid="uid://sdomipm45eeq"]
 
+[ext_resource type="Script" uid="uid://c7r7xxrgnydry" path="res://Entities/Character/Player/player.gd" id="1_kjafu"]
 [ext_resource type="Script" uid="uid://dov03n80fb5s7" path="res://Entities/Character/Player/neck.gd" id="1_ucweq"]
 [ext_resource type="Script" uid="uid://dfouv7ymg0iht" path="res://Common/stateMachine/state_machine.gd" id="2_1ie0h"]
 [ext_resource type="Script" uid="uid://c0pdanadtmgpo" path="res://Entities/Character/Player/states/idle.gd" id="3_42nxq"]
@@ -8,23 +9,19 @@
 [ext_resource type="Script" uid="uid://c8aryjyadcs8n" path="res://Entities/Character/Player/states/wall_run.gd" id="5_ss7kx"]
 [ext_resource type="Script" uid="uid://s68ske2ous5r" path="res://Entities/Character/Player/states/dash.gd" id="6_ss7kx"]
 [ext_resource type="PackedScene" uid="uid://c2hjobohkix0g" path="res://Common/ComponentManager/Components/hitbox_component.tscn" id="8_c5rqy"]
-
-
+[ext_resource type="Script" uid="uid://b56rolgolil86" path="res://Common/ComponentManager/component_manager.gd" id="8_kjafu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0qees"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_0qees"]
 
-
-
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_dnykm"]
 size = Vector3(1.5454102, 1.890625, 1.4515991)
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
+script = ExtResource("1_kjafu")
 
 [node name="PlayerCollideBox" type="CollisionShape3D" parent="."]
-
 shape = SubResource("CapsuleShape3D_0qees")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -53,7 +50,6 @@ metadata/_custom_type_script = "uid://dl4oalac4id4b"
 script = ExtResource("5_ss7kx")
 metadata/_custom_type_script = "uid://dl4oalac4id4b"
 
-
 [node name="Dash" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "dashTime")]
 script = ExtResource("6_ss7kx")
 player = NodePath("../..")
@@ -63,15 +59,15 @@ metadata/_custom_type_script = "uid://dl4oalac4id4b"
 [node name="DashTimer" type="Timer" parent="StateMachine/Dash"]
 wait_time = 0.2
 
-[node name="Components" type="Node3D" parent="."]
+[node name="ComponentManager" type="Node3D" parent="."]
+script = ExtResource("8_kjafu")
 
-[node name="HitboxComponent" parent="Components" instance=ExtResource("8_c5rqy")]
+[node name="HitboxComponent" parent="ComponentManager" instance=ExtResource("8_c5rqy")]
 damage = 50.0
 
-[node name="CollisionShape3D" parent="Components/HitboxComponent" index="0"]
+[node name="CollisionShape3D" parent="ComponentManager/HitboxComponent" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015541434, 0.4453125, 0.025054932)
 shape = SubResource("BoxShape3D_dnykm")
-
 
 [node name="Neck" type="Node3D" parent="."]
 script = ExtResource("1_ucweq")
@@ -80,8 +76,6 @@ script = ExtResource("1_ucweq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6472425, 0)
 fov = 90.78415
 
-
 [connection signal="timeout" from="StateMachine/Dash/DashTimer" to="StateMachine/Dash" method="_on_dash_timer_timeout"]
 
-[editable path="Components/HitboxComponent"]
-
+[editable path="ComponentManager/HitboxComponent"]
