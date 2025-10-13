@@ -1,4 +1,4 @@
-class_name FallingState
+class_name PlayerFallingState
 extends State
 
 @export var player : CharacterBody3D
@@ -36,10 +36,15 @@ func physics_update(delta: float):
 		acceleration = defaultAcceleration
 		
 		
-		
-		#if sqrt(pow(player.velocity.x, 2) + pow(player.velocity.z, 2)) < abs(sqrt(pow(direction.x * maxSpeed, 2) + pow(direction.z * maxSpeed, 2))):
-			#player.velocity.x = lerpf(player.velocity.x, direction.x * maxSpeed, acceleration * delta)
-			#player.velocity.z = lerpf(player.velocity.z, direction.z * maxSpeed, acceleration * delta)
+		if sqrt(pow(player.velocity.x, 2) + pow(player.velocity.z, 2)) < sqrt(pow(direction.x * maxSpeed, 2) + pow(direction.z * maxSpeed, 2)):
+			#print("Speeding Up")
+			player.velocity.x = lerpf(player.velocity.x, direction.x * maxSpeed, acceleration * delta)
+			player.velocity.z = lerpf(player.velocity.z, direction.z * maxSpeed, acceleration * delta)
+		else:
+			# Currently slowing down diagonal dashing fix pls :)
+			#print("Changin Dir")
+			player.velocity.x = lerpf(player.velocity.x, direction.x * abs(player.velocity.x), acceleration * delta)
+			player.velocity.z = lerpf(player.velocity.z, direction.z * abs(player.velocity.z), acceleration * delta)
 	
 	player.move_and_slide()
 

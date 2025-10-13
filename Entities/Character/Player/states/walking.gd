@@ -1,4 +1,4 @@
-class_name WalkingState
+class_name PlayerWalkingState
 extends State
 
 @export var defaultAcceleration : float = 20.1

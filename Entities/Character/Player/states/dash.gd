@@ -1,4 +1,4 @@
-class_name DashState
+class_name PlayerDashState
 extends State
 
 @export var player : CharacterBody3D
