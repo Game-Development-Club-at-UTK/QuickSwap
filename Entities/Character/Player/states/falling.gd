@@ -5,6 +5,7 @@ extends State
 @export var defaultAcceleration : float = 5.4
 @export var maxSpeed : float = 5.4
 
+var speed : float
 var acceleration : float
 
 func enter():
@@ -35,17 +36,33 @@ func physics_update(delta: float):
 			acceleration *= 8
 		acceleration = defaultAcceleration
 		
+		speed = sqrt(pow(player.velocity.x, 2) + pow(player.velocity.z, 2))
 		
-		if sqrt(pow(player.velocity.x, 2) + pow(player.velocity.z, 2)) < sqrt(pow(direction.x * maxSpeed, 2) + pow(direction.z * maxSpeed, 2)):
+		if speed < sqrt(pow(direction.x * maxSpeed, 2) + pow(direction.z * maxSpeed, 2)):
 			#print("Speeding Up")
 			player.velocity.x = lerpf(player.velocity.x, direction.x * maxSpeed, acceleration * delta)
 			player.velocity.z = lerpf(player.velocity.z, direction.z * maxSpeed, acceleration * delta)
 		else:
-			# Currently slowing down diagonal dashing fix pls :)
+			#print("Changin Dir")
+			 
+			#print("%f : %f" %[player.velocity.x, direction.x * abs(player.velocity.x)])
+			#print("%f : %f" %[player.velocity.z, direction.z * abs(player.velocity.z)])
+			
+			player.velocity.x = lerpf(player.velocity.x, direction.x * speed, acceleration * delta)
+			player.velocity.z = lerpf(player.velocity.z, direction.z * speed, acceleration * delta)
+	
+		
+		"""
+		if Vector2(player.velocity.x, player.velocity.z).normalized() < sqrt(pow(direction.x * maxSpeed, 2) + pow(direction.z * maxSpeed, 2)):
+			#print("Speeding Up")
+			player.velocity.x = lerpf(player.velocity.x, direction.x * maxSpeed, acceleration * delta)
+			player.velocity.z = lerpf(player.velocity.z, direction.z * maxSpeed, acceleration * delta)
+		else:
 			#print("Changin Dir")
 			player.velocity.x = lerpf(player.velocity.x, direction.x * abs(player.velocity.x), acceleration * delta)
 			player.velocity.z = lerpf(player.velocity.z, direction.z * abs(player.velocity.z), acceleration * delta)
-	
+		"""
+		
 	player.move_and_slide()
 
 func _input(event):
