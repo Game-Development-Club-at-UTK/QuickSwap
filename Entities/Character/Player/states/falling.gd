@@ -69,3 +69,5 @@ func _input(event):
 	#print(event.as_text())
 	if event.is_action_pressed("dash"):
 		transition.emit(self, 'Dash')
+	elif event.is_action_pressed("slide"):
+		transition.emit(self, 'Slide')

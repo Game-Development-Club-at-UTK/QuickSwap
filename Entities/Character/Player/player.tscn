@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://sdomipm45eeq"]
+[gd_scene load_steps=15 format=3 uid="uid://sdomipm45eeq"]
 
 [ext_resource type="Script" uid="uid://c7r7xxrgnydry" path="res://Entities/Character/Player/player.gd" id="1_kjafu"]
 [ext_resource type="Script" uid="uid://dov03n80fb5s7" path="res://Entities/Character/Player/neck.gd" id="1_ucweq"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://s68ske2ous5r" path="res://Entities/Character/Player/states/dash.gd" id="6_ss7kx"]
 [ext_resource type="PackedScene" uid="uid://c2hjobohkix0g" path="res://Common/ComponentManager/Components/hitbox_component.tscn" id="8_c5rqy"]
 [ext_resource type="Script" uid="uid://b56rolgolil86" path="res://Common/ComponentManager/component_manager.gd" id="8_kjafu"]
+[ext_resource type="Script" uid="uid://csg2xc4yqybmi" path="res://Entities/Character/Player/slide.gd" id="8_pn6di"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0qees"]
 
@@ -58,6 +59,10 @@ metadata/_custom_type_script = "uid://dl4oalac4id4b"
 
 [node name="DashTimer" type="Timer" parent="StateMachine/Dash"]
 wait_time = 0.2
+
+[node name="Slide" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("8_pn6di")
+player = NodePath("../..")
 
 [node name="ComponentManager" type="Node3D" parent="."]
 script = ExtResource("8_kjafu")

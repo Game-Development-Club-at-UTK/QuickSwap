@@ -16,9 +16,11 @@ func exit():
 	pass
 
 func update(_delta: float):
+	"""
 	if Input.is_action_just_pressed("jump") and player.is_on_floor():
 		#print("Jump!")
 		player.velocity.y = jumpVelocity
+	"""
 	
 	if not player.is_on_floor():
 		transition.emit(self, 'Falling')
@@ -32,3 +34,9 @@ func physics_update(_delta: float):
 		player.velocity.z = lerpf(player.velocity.z, 0.0, friction)
 	
 	player.move_and_slide()
+	
+func _input(event):
+	#print(event.as_text())
+	if event.is_action_pressed("jump") and player.is_on_floor():
+		#print("Jump!")
+		player.velocity.y = jumpVelocity
