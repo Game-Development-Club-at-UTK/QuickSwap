@@ -37,8 +37,13 @@ func _on_dash_timer_timeout() -> void:
 		transition.emit(self, "Idle")
 		
 func _input(event):
-	if event.is_action_pressed("jump") and player.is_on_floor():
-		#print("Jump!")
-		player.velocity.y = jumpVelocity
-		transition.emit(self, "Falling")
-	
+	#print(event)
+	if player.is_on_floor():
+		#print("Player is on floor")
+		if event.is_action_pressed("jump"):
+			#print("Jump!")
+			player.velocity.y = jumpVelocity
+			transition.emit(self, "Falling")
+		elif event.is_action_pressed("slide"):
+			#print("Sliding")
+			transition.emit(self, "Slide")
