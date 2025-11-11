@@ -70,4 +70,4 @@ func _input(event):
 	if event.is_action_pressed("dash"):
 		transition.emit(self, 'Dash')
 	elif event.is_action_pressed("slide"):
-		transition.emit(self, 'Slide')
+		transition.emit(self, 'GroundSmash')
