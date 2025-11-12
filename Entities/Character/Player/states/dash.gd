@@ -13,10 +13,11 @@ var jumpVelocity : float = 4.5
 func enter():
 	#print("DASH!")
 	input_dir = Input.get_vector("moveLeft", "moveRight", "moveForward", "moveBack")
-	if !player.is_on_floor() && !input_dir:
+	
+	#if !player.is_on_floor() && !input_dir:
 		#print("Fall")
-		transition.emit(self, "Falling")
-		
+		#transition.emit(self, "Falling")
+		#
 	direction = (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	dashTime.start()

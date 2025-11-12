@@ -12,7 +12,7 @@ var baseSlideSpeed : float = 12.0
 var jumpVelocity : float = 4.5
 
 func enter():
-	print("Sliding")
+	#print("Sliding")
 	input_dir = Input.get_vector("moveLeft", "moveRight", "moveForward", "moveBack")
 	direction = (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	speed = sqrt(pow(player.velocity.x, 2) + pow(player.velocity.z, 2))

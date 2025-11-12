@@ -67,7 +67,7 @@ func physics_update(delta: float):
 
 func _input(event):
 	#print(event.as_text())
-	if event.is_action_pressed("dash"):
+	if event.is_action_pressed("dash") && Input.get_vector("moveLeft", "moveRight", "moveForward", "moveBack"):
 		transition.emit(self, 'Dash')
 	elif event.is_action_pressed("slide"):
 		transition.emit(self, 'GroundSmash')
