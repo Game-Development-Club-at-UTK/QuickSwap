@@ -69,6 +69,9 @@ player = NodePath("../..")
 script = ExtResource("9_kcsno")
 player = NodePath("../..")
 
+[node name="Timer" type="Timer" parent="StateMachine/GroundSmash"]
+wait_time = 0.005
+
 [node name="ComponentManager" type="Node3D" parent="."]
 script = ExtResource("8_kjafu")
 
