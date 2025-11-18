@@ -8,8 +8,8 @@ func enter() -> void:
 func exit() -> void:
 	pass
 
-func input(_event) -> State:
-	return null
+func input(_event) -> void:
+	return
 
-func update(_delta) -> State:
-	return null
+func update(_delta) -> void:
+	return

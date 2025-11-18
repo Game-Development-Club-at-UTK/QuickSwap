@@ -17,14 +17,14 @@ var doubleJumpVelocity : float
 # var currentDirectionX : float = 0.0
 # var currentDirectionZ : float = 0.0
 
-func enter():
+func enter() -> void:
 	doubleJumpVelocity = jumpVelocity / 2
 	acceleration = defaultAcceleration
 
-func exit():
+func exit() -> void:
 	pass
 
-func update(_delta: float):
+func update(_delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and player.is_on_floor():
 		#print("Jump!")
 		player.velocity.y = jumpVelocity
@@ -32,7 +32,7 @@ func update(_delta: float):
 	if not player.is_on_floor():
 		transition.emit(self, 'Falling')
 
-func physics_update(delta: float):
+func physics_update(delta: float) -> void:
 	var input_dir = Input.get_vector("moveLeft", "moveRight", "moveForward", "moveBack")
 	var direction = (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	#print(input_dir)
@@ -59,7 +59,7 @@ func physics_update(delta: float):
 		
 	player.move_and_slide()
 
-func _input(event):
+func _input(event) -> void:
 	#print(event.as_text())
 	if event.is_action_pressed("dash"):
 		transition.emit(self, 'Dash')

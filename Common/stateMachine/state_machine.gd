@@ -8,7 +8,7 @@ var states : Dictionary = {
 	
 }
 
-func _ready():
+func _ready() -> void:
 	for child in get_children():
 		if child is State:
 			states[child.name] = child
@@ -18,17 +18,17 @@ func _ready():
 		initialState.enter()
 		currentState = initialState
 
-func _process(delta):
+func _process(delta) -> void:
 	#print(currentState)
 	
 	if currentState:
 		currentState.update(delta)
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	if currentState:
 		currentState.physics_update(delta)
 
-func _on_child_transition(state : State, newStateName : String):
+func _on_child_transition(state : State, newStateName : String) -> void:
 	if state != currentState:
 		return
 		

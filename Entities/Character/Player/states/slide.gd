@@ -11,7 +11,7 @@ var doesPlayerStartOnGround : bool = false
 var baseSlideSpeed : float = 12.0
 var jumpVelocity : float = 4.5
 
-func enter():
+func enter() -> void:
 	#print("Sliding")
 	input_dir = Input.get_vector("moveLeft", "moveRight", "moveForward", "moveBack")
 	direction = (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -44,5 +44,5 @@ func physics_update(delta: float) -> void:
 	player.velocity += player.get_gravity() * delta
 	player.move_and_slide()
 
-func exit():
+func exit() -> void:
 	pass

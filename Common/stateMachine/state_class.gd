@@ -4,25 +4,25 @@ extends Node
 signal transition
 
 #////////////#
-func enter():
+func enter() -> void:
 	pass
 
 #////////////#
 
 #///////////#
-func exit():
+func exit() -> void:
 	pass
 
 #///////////#
 
 #//////////////////////////#
-func update(_delta: float):
+func update(_delta: float) -> void:
 	pass
 
 #//////////////////////////#
 
 #///////////////////////////////////#
-func physics_update(_delta: float):
+func physics_update(_delta: float) -> void:
 	pass
 
 #///////////////////////////////////#

@@ -18,6 +18,7 @@ config/icon="uid://drvof3d6qae0k"
 [global_group]
 
 player="Player Group"
+WallRunnable="Player can run on these walls"
 
 [input]
 

@@ -5,24 +5,36 @@ extends State
 @export var defaultAcceleration : float = 5.4
 @export var maxSpeed : float = 5.4
 
+@export var rightAntenna : RayCast3D
+@export var leftAntenna : RayCast3D
+
 var speed : float
 var acceleration : float
 
-func enter():
+func enter() -> void:
 	acceleration = defaultAcceleration
 
-func exit():
+func exit() -> void:
 	pass
 
-func update(_delta: float):
+func update(_delta: float) -> void:
 	if player.is_on_floor():
 		if Input.get_vector("moveLeft", "moveRight", "moveForward", "moveBack"):
 			transition.emit(self, 'Walking')
 		else:
 			transition.emit(self, 'Idle')
 
-func physics_update(delta: float):
-	# Handles gravity
+
+func physics_update(delta: float) -> void:
+		# Checks for wall-running
+	if rightAntenna.is_colliding():
+		if rightAntenna.get_collider().is_in_group("WallRunnable"):
+			transition.emit(self, "WallRun")
+	elif leftAntenna.is_colliding(): 
+		if leftAntenna.get_collider().is_in_group("WallRunnable"):
+			transition.emit(self, "WallRun")
+		
+		# Handles gravity
 	player.velocity += player.get_gravity() * delta
 	
 	var input_dir = Input.get_vector("moveLeft", "moveRight", "moveForward", "moveBack")
@@ -65,7 +77,7 @@ func physics_update(delta: float):
 		
 	player.move_and_slide()
 
-func _input(event):
+func _input(event) -> void:
 	#print(event.as_text())
 	if event.is_action_pressed("dash") && Input.get_vector("moveLeft", "moveRight", "moveForward", "moveBack"):
 		transition.emit(self, 'Dash')

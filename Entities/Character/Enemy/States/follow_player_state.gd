@@ -15,11 +15,11 @@ func enter() -> void:
 func exit() -> void:
 	print("bye")
 
-func update(_delta) -> State:
+func update(_delta) -> void:
 	if player:
 		var loc = delta_from_player()
 		enemy.vel += loc
-	return null
+	return
 
 func delta_from_player() -> Vector3:
 	var player_loc : Vector3 = player.position

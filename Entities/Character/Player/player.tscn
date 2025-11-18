@@ -1,17 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://sdomipm45eeq"]
+[gd_scene load_steps=17 format=3 uid="uid://sdomipm45eeq"]
 
 [ext_resource type="Script" uid="uid://c7r7xxrgnydry" path="res://Entities/Character/Player/player.gd" id="1_kjafu"]
 [ext_resource type="Script" uid="uid://dov03n80fb5s7" path="res://Entities/Character/Player/neck.gd" id="1_ucweq"]
 [ext_resource type="Script" uid="uid://dfouv7ymg0iht" path="res://Common/stateMachine/state_machine.gd" id="2_1ie0h"]
 [ext_resource type="Script" uid="uid://c0pdanadtmgpo" path="res://Entities/Character/Player/states/idle.gd" id="3_42nxq"]
+[ext_resource type="Script" uid="uid://4uxweufeh6vh" path="res://Entities/Character/Player/cross_state_variables.gd" id="3_cshi8"]
 [ext_resource type="Script" uid="uid://lmgvvy3uhjh6" path="res://Entities/Character/Player/states/walking.gd" id="4_5u6hq"]
 [ext_resource type="Script" uid="uid://c4myvlwrn2kq3" path="res://Entities/Character/Player/states/falling.gd" id="5_d4qa6"]
 [ext_resource type="Script" uid="uid://c8aryjyadcs8n" path="res://Entities/Character/Player/states/wall_run.gd" id="5_ss7kx"]
 [ext_resource type="Script" uid="uid://s68ske2ous5r" path="res://Entities/Character/Player/states/dash.gd" id="6_ss7kx"]
 [ext_resource type="PackedScene" uid="uid://c2hjobohkix0g" path="res://Common/ComponentManager/Components/hitbox_component.tscn" id="8_c5rqy"]
 [ext_resource type="Script" uid="uid://b56rolgolil86" path="res://Common/ComponentManager/component_manager.gd" id="8_kjafu"]
-[ext_resource type="Script" uid="uid://csg2xc4yqybmi" path="res://Entities/Character/Player/slide.gd" id="8_pn6di"]
-[ext_resource type="Script" uid="uid://55xm0yc8b0rf" path="res://Entities/Character/Player/ground_smash.gd" id="9_kcsno"]
+[ext_resource type="Script" uid="uid://csg2xc4yqybmi" path="res://Entities/Character/Player/states/slide.gd" id="8_pn6di"]
+[ext_resource type="Script" uid="uid://55xm0yc8b0rf" path="res://Entities/Character/Player/states/ground_smash.gd" id="9_kcsno"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0qees"]
 
@@ -33,6 +34,9 @@ mesh = SubResource("CapsuleMesh_0qees")
 script = ExtResource("2_1ie0h")
 initialState = NodePath("Idle")
 
+[node name="CrossStateVariables" type="Node" parent="StateMachine"]
+script = ExtResource("3_cshi8")
+
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("3_42nxq")
 player = NodePath("../..")
@@ -43,13 +47,18 @@ player = NodePath("../..")
 neck = NodePath("../../Neck")
 metadata/_custom_type_script = "uid://dl4oalac4id4b"
 
-[node name="Falling" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+[node name="Falling" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "rightAntenna", "leftAntenna")]
 script = ExtResource("5_d4qa6")
 player = NodePath("../..")
+rightAntenna = NodePath("../../Antennas/RightAntenna")
+leftAntenna = NodePath("../../Antennas/LeftAntenna")
 metadata/_custom_type_script = "uid://dl4oalac4id4b"
 
-[node name="WallRun" type="Node" parent="StateMachine"]
+[node name="WallRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "rightAntenna", "leftAntenna")]
 script = ExtResource("5_ss7kx")
+player = NodePath("../..")
+rightAntenna = NodePath("../../Antennas/RightAntenna")
+leftAntenna = NodePath("../../Antennas/LeftAntenna")
 metadata/_custom_type_script = "uid://dl4oalac4id4b"
 
 [node name="Dash" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "dashTime")]
@@ -88,6 +97,16 @@ script = ExtResource("1_ucweq")
 [node name="Camera3D" type="Camera3D" parent="Neck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6472425, 0)
 fov = 90.78415
+
+[node name="Antennas" type="Node3D" parent="."]
+
+[node name="RightAntenna" type="RayCast3D" parent="Antennas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0037372112, 0, 0)
+target_position = Vector3(1, 0, 0)
+
+[node name="LeftAntenna" type="RayCast3D" parent="Antennas"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.0037372112, 0, 0)
+target_position = Vector3(1, 0, 0)
 
 [connection signal="timeout" from="StateMachine/Dash/DashTimer" to="StateMachine/Dash" method="_on_dash_timer_timeout"]
 
